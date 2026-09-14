@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-green-200: hsl(148, 38%, 91%);
+      --color-green-600: hsl(169, 82%, 27%);
+      --color-fm-red: hsl(0, 66%, 54%);
+      --color-grey-500: hsl(186, 15%, 59%);
+      --color-grey-900: hsl(187, 24%, 22%);
+    }
+    body {
+      font-family: 'Karla', sans-serif;
+    }
+    
+    /* Accessibility: Prefers Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+
+  <title>Frontend Mentor | Contact form</title>
+</head>
+
+<body class="bg-green-200 min-h-screen flex flex-col justify-center items-center p-4 relative text-grey-900">
+
+  <div id="toast-success" class="fixed top-6 left-1/2 -translate-x-1/2 bg-grey-900 text-white p-6 rounded-xl shadow-xl flex flex-col gap-2 z-50 transition-opacity duration-300 opacity-0 pointer-events-none" aria-live="polite">
+    <div class="flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" fill="none" viewBox="0 0 20 21"><path fill="#fff" d="M14.28 7.72a.748.748 0 0 1 0 1.06l-5.25 5.25a.748.748 0 0 1-1.06 0l-2.25-2.25a.75.75 0 1 1 1.06-1.06l1.72 1.72 4.72-4.72a.75.75 0 0 1 1.06 0Zm-4.28 9.28a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-15.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z"/></svg>
+      <h2 class="font-bold text-lg">Message Sent!</h2>
+    </div>
+    <p class="text-green-200 text-sm">Thanks for completing the form. We'll be in touch soon!</p>
+  </div>
+
+  <!-- my-auto added here so the card pushes the footer down but stays vertically centered -->
+  <main class="bg-white rounded-2xl p-6 sm:p-10 w-full max-w-[736px] my-auto">
+    <h1 class="text-3xl font-bold mb-8">Contact Us</h1>
+
+    <form id="contact-form" novalidate>
+      <div class="flex flex-col gap-6" id="form-fields-wrapper">
+        
+        <div class="flex flex-col sm:flex-row gap-6">
+          <div class="flex flex-col gap-2 w-full">
+            <label for="first-name">First Name <span class="text-green-600">*</span></label>
+            <input class="border border-grey-500 rounded-md p-3 w-full cursor-pointer hover:border-green-600 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 data-[error=true]:border-fm-red" type="text" id="first-name" name="first-name" aria-describedby="first-name-error">
+            <span id="first-name-error" class="text-fm-red text-sm hidden">This field is required</span>
+          </div>
+
+          <div class="flex flex-col gap-2 w-full">
+            <label for="last-name">Last Name <span class="text-green-600">*</span></label>
+            <input class="border border-grey-500 rounded-md p-3 w-full cursor-pointer hover:border-green-600 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 data-[error=true]:border-fm-red" type="text" id="last-name" name="last-name" aria-describedby="last-name-error">
+            <span id="last-name-error" class="text-fm-red text-sm hidden">This field is required</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="email">Email Address <span class="text-green-600">*</span></label>
+          <input class="border border-grey-500 rounded-md p-3 w-full cursor-pointer hover:border-green-600 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 data-[error=true]:border-fm-red" type="email" id="email" name="email" aria-describedby="email-error">
+          <span id="email-error" class="text-fm-red text-sm hidden">Please enter a valid email address</span>
+        </div>
+
+        <fieldset aria-describedby="query-error">
+          <legend class="mb-4">Query Type <span class="text-green-600">*</span></legend>
+          <div class="flex flex-col sm:flex-row gap-6">
+            <div class="border border-grey-500 rounded-md p-3 w-full flex items-center gap-3 cursor-pointer hover:border-green-600 has-[:checked]:bg-green-200 has-[:checked]:border-green-600">
+              <input type="radio" id="general-enquiry" name="query-type" value="general" class="accent-green-600 w-4 h-4 cursor-pointer">
+              <label for="general-enquiry" class="cursor-pointer w-full">General Enquiry</label>
+            </div>
+            <div class="border border-grey-500 rounded-md p-3 w-full flex items-center gap-3 cursor-pointer hover:border-green-600 has-[:checked]:bg-green-200 has-[:checked]:border-green-600">
+              <input type="radio" id="support-request" name="query-type" value="support" class="accent-green-600 w-4 h-4 cursor-pointer">
+              <label for="support-request" class="cursor-pointer w-full">Support Request</label>
+            </div>
+          </div>
+          <span id="query-error" class="text-fm-red text-sm mt-2 block hidden">Please select a query type</span>
+        </fieldset>
+
+        <div class="flex flex-col gap-2">
+          <label for="message">Message <span class="text-green-600">*</span></label>
+          <textarea class="border border-grey-500 rounded-md p-3 w-full cursor-pointer hover:border-green-600 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 resize-none data-[error=true]:border-fm-red" id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
+          <span id="message-error" class="text-fm-red text-sm hidden">This field is required</span>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-4 mt-4">
+            <input type="checkbox" id="consent" name="consent" class="accent-green-600 w-5 h-5 cursor-pointer" aria-describedby="consent-error">
+            <label for="consent" class="cursor-pointer text-sm sm:text-base">I consent to being contacted by the team <span class="text-green-600">*</span></label>
+          </div>
+          <span id="consent-error" class="text-fm-red text-sm hidden">To submit this form, please consent to being contacted</span>
+        </div>
+
+        <div class="mt-4">
+          <button type="submit" class="bg-green-600 hover:bg-grey-900 text-white font-bold py-4 rounded-lg w-full transition-colors cursor-pointer">
+            Submit
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  <footer class="attribution text-center text-sm mt-8 pb-4 text-grey-900">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener noreferrer" class="text-green-600 font-bold hover:text-grey-900 transition-colors">Frontend Mentor</a>. 
+    Coded by <a href="https://musta.dev" target="_blank" rel="noopener noreferrer" class="text-green-600 font-bold hover:text-grey-900 transition-colors">Mustafa Al-gburi</a>.
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
